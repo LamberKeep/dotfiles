@@ -1,0 +1,55 @@
+/**
+  Author: LamberKeep
+  Date: 09.08.22
+*/
+
+* {
+  font: "ubuntu 12";
+  background-color: #1f1f1f;
+  border-color:	#828282;
+  text-color: #c5c8c6;
+}
+
+window {
+  anchor: center;
+  location: center;
+
+  width: 600px;
+  height: 600px;
+
+  border: 1;
+  border-color:	#828282;
+
+  padding: 6px 6px 6px 6px;
+
+  children: [ inputbar, listview ];
+
+  spacing: 5px;
+}
+
+inputbar {
+  children: [ prompt, entry ];
+}
+
+entry {
+  blink: true;
+  expand: true;
+}
+
+listview {
+  layout: vertical;
+  lines: 100;
+}
+
+element {
+  children: [ element-icon, element-text ];
+}
+
+element.selected {
+  background-color: #828282;
+}
+
+element-text, element-icon {
+  background-color: inherit;
+  text-color: inherit;
+}
