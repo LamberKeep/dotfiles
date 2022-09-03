@@ -39,10 +39,11 @@ client.urgent		$foreground	$background	$foreground	$color8		$color8
 client.placeholder	$foreground	$background	$foreground	$color8		$color8
 
 # WALLPAPER
-exec --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.png
+# exec --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.png
 # exec --no-startup-id xsetroot -solid "#000000"
 
 # AUTOSTART
+exec --no-startup-id sh ~/.config/i3/monitor.sh
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
@@ -52,7 +53,6 @@ exec --no-startup-id sh ~/.config/polybar/launch.sh --hack
 
 # exec --no-startup-id telegram-desktop -startintray 
 # exec --no-startup-id discord --start-minimized
-
 # exec --no-startup-id steam -silent
 
 # BINDS
@@ -198,5 +198,5 @@ mode "*" {
 for_window [class=".*"] border pixel 1
 # for_window [class="mpv"] floating enable; sticky enabled
 for_window [title="Picture-in-Picture"] sticky enabled
-gaps inner 3
-gaps outer 0
+# gaps inner 3
+# gaps outer 0
