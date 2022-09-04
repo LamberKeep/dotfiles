@@ -39,8 +39,8 @@ client.urgent		$foreground	$background	$foreground	$color8		$color8
 client.placeholder	$foreground	$background	$foreground	$color8		$color8
 
 # WALLPAPER
-# exec --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.png
-# exec --no-startup-id xsetroot -solid "#000000"
+exec --no-startup-id feh --bg-scale ~/.wallpaper/Holo/1.png --bg-scale ~/.wallpaper/Holo/2.png
+# exec --no-startup-id hsetroot -solid "#000000"
 
 # AUTOSTART
 exec --no-startup-id sh ~/.config/i3/monitor.sh
@@ -48,7 +48,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id picom
-exec --no-startup-id volumeicon
+exec --no-startup-id concy
 exec --no-startup-id sh ~/.config/polybar/launch.sh --hack
 
 # exec --no-startup-id telegram-desktop -startintray 
