@@ -1,0 +1,6 @@
+# Editors & IDE folders
+.vscode
+.idea
+
+upload.sh
+fish/conf.d/export.fish

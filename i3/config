@@ -1,0 +1,212 @@
+# MODIFYER
+set $mod mod4
+set $alt mod1
+set $ctrl control
+
+# FONTS
+font pango: DejaVu Sans Mono 12px
+
+# COLORS
+set_from_resource	$backgr		background
+set_from_resource	$foregr		foreground
+set_from_resource	$color0		color0
+set_from_resource	$color1		color1
+set_from_resource	$color2		color2
+set_from_resource	$color3		color3
+set_from_resource	$color4		color4
+set_from_resource	$color5		color5
+set_from_resource	$color6		color6
+set_from_resource	$color7		color7
+set_from_resource	$color8		color8
+set_from_resource	$color9		color9
+set_from_resource	$color10	color10
+set_from_resource	$color11	color11
+set_from_resource	$color12	color12
+set_from_resource	$color13	color13
+set_from_resource	$color14	color14
+set_from_resource	$color15	color15
+
+# THEME
+# class			border	backgr	text	indic	child
+client.focused		$foregr	$color2	$foregr	$foregr	$foregr
+client.focused_inactive	$backgr	$color2	$foregr	$color2	$color2
+client.unfocused	$backgr	$backgr	$foregr	$backgr	$backgr
+client.urgent		$color8	$backgr	$foregr	$color8	$color8
+client.placeholder	$backgr	$backgr	$foregr	$backgr	$backgr
+client.background	$backgr
+
+# SHUTDOWN
+bindsym --release $mod+Shift+e exec sh '/home/lamberkeep/.config/i3/shutdown.sh'
+
+# SCREENSHOT
+bindsym --release Print exec import -window root -set filename:f '%wx%h' "/tmp/$(date +%Y_%m_%d)_%[filename:f].png"
+bindsym --release $ctrl+Print exec import -window $(xdotool selectwindow) -set filename:f '%wx%h' "/tmp/$(date +%Y_%m_%d)_%[filename:f].png"
+bindsym --release $alt+Sys_Req exec import -set filename:f '%wx%h' "/tmp/$(date +%Y_%m_%d)_%[filename:f].png"
+
+# FN BUTTONS
+bindsym XF86Tools exec --no-startup-id i3-sensible-terminal -e cmus
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+#bindsym XF86AudioStop
+#bindsym XF86AudioPrev
+#bindsym XF86AudioPlay
+#bindsym XF86AudioNext
+bindsym XF86Mail exec --no-startup-id i3-sensible-terminal -e sh /home/lamberkeep/Code/Shell/ssh_manager/ssh_manager.sh --sftp /home/lamberkeep/Code/Shell/ssh_manager/sftp_list.txt
+bindsym XF86HomePage exec --no-startup-id i3-sensible-terminal -e sh /home/lamberkeep/Code/Shell/ssh_manager/ssh_manager.sh --ssh /home/lamberkeep/Code/Shell/ssh_manager/ssh_list.txt
+bindsym XF86Explorer exec --no-startup-id i3-sensible-terminal -e ranger
+bindsym XF86Calculator exec --no-startup-id i3-sensible-terminal -e bc 
+
+# TERMINAL
+bindsym $mod+Return exec i3-sensible-terminal
+
+# KILL WINDOW
+bindsym $mod+Shift+q kill
+
+# PROGRAM LAUNCHER
+#bindsym $mod+Tab exec --no-startup-id "rofi -show drun -normal-window"
+bindsym $mod+Tab exec --no-startup-id "dmenu_run -b -fn 'Ubuntu-12' -nb '#1d1f21' -sb '#81a2be'"
+
+# FOCUS
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+a focus parent
+bindsym $mod+d focus child
+
+bindsym $mod+space focus mode_toggle
+
+# MOVING
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# SPLITING
+bindsym $mod+h split horizontal
+bindsym $mod+v split vertical
+
+# FLOATING
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+floating_minimum_size 50 x 50
+floating_maximum_size 2000 x 2000
+
+bindsym $mod+t floating toggle
+
+# LAYOUTS
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# FULLSCREEN
+bindsym $mod+f fullscreen toggle
+popup_during_fullscreen leave_fullscreen
+
+# WORKSPACES
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+bindsym $mod+Shift+grave move workspace to output next
+
+# I3
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# RESIZE
+bindsym $mod+r mode "*"
+mode "*" {
+        # These bindings trigger as soon as you enter the resize mode
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+       # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+# GAPS
+gaps inner 2
+#gaps outer 0
+
+# BORDER
+default_border pixel 1
+#default_floating_border pixel 2
+
+# WINDOWS
+for_window [all] title_format "%class - %title"
+for_window [all] title_window_icon on
+for_window [all] title_window_icon padding 3px
+for_window [floating] move position center
+for_window [title="rofi"] floating enable; sticky enabled
+for_window [title="Picture-in-Picture"] border pixel 1; sticky enabled
+for_window [title="Default - Wine desktop"] fullscreen enable
+#for_window [class="mpv"] floating enable; sticky enabled
+#for_window [title="cmus"] floating enable; sticky enabled; resize set 900 600 
+
+# WALLPAPER
+exec --no-startup-id hsetroot -solid "#101010"
+#exec --no-startup-id feh --bg-fill ~/.wallpaper/holo/1.jpg --bg-fill ~/.wallpaper/holo/2.jpg
+
+# AUTOSTART
+exec --no-startup-id nvidia-settings --load-config-only
+exec --no-startup-id sh ~/.config/polybar/start.sh --hack
+#exec --no-startup-id telegram-desktop -startintray
+exec --no-startup-id element-desktop --hidden
+exec --no-startup-id discord --start-minimized
+#exec --no-startup-id ripcord
+#exec --no-startup-id steam -silent
+#exec --no-startup-id picom
+#exec --no-startup-id steam -silent -no-browser
+#exec --no-startup-id conky
