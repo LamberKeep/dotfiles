@@ -48,13 +48,15 @@ bindsym XF86Tools exec --no-startup-id i3-sensible-terminal -e cmus
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-#bindsym XF86AudioStop
-#bindsym XF86AudioPrev
-#bindsym XF86AudioPlay
-#bindsym XF86AudioNext
-bindsym XF86Mail exec --no-startup-id i3-sensible-terminal -e sh /home/lamberkeep/Code/Shell/ssh_manager/ssh_manager.sh --sftp /home/lamberkeep/Code/Shell/ssh_manager/sftp_list.txt
-bindsym XF86HomePage exec --no-startup-id i3-sensible-terminal -e sh /home/lamberkeep/Code/Shell/ssh_manager/ssh_manager.sh --ssh /home/lamberkeep/Code/Shell/ssh_manager/ssh_list.txt
-bindsym XF86Explorer exec --no-startup-id i3-sensible-terminal -e ranger
+
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+
+bindsym XF86Mail exec --no-startup-id thunderbird
+bindsym XF86HomePage exec --no-startup-id librewolf
+bindsym XF86Explorer exec --no-startup-id thunar
 bindsym XF86Calculator exec --no-startup-id i3-sensible-terminal -e bc 
 
 # TERMINAL
@@ -202,11 +204,11 @@ exec --no-startup-id hsetroot -solid "#101010"
 # AUTOSTART
 exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id sh ~/.config/polybar/start.sh --hack
+exec --no-startup-id birdtray
+#exec --no-startup-id discord --start-minimized
+#exec --no-startup-id element-desktop --hidden
 #exec --no-startup-id telegram-desktop -startintray
-exec --no-startup-id element-desktop --hidden
-exec --no-startup-id discord --start-minimized
 #exec --no-startup-id ripcord
-#exec --no-startup-id steam -silent
 #exec --no-startup-id picom
 #exec --no-startup-id steam -silent -no-browser
 #exec --no-startup-id conky
