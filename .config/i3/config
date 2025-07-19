@@ -165,6 +165,7 @@ bindsym $mod+Shift+r restart
 
 # RESIZE
 bindsym $mod+r mode "*"
+
 mode "*" {
         # These bindings trigger as soon as you enter the resize mode
         bindsym j resize shrink width 10 px or 10 ppt
@@ -182,6 +183,8 @@ mode "*" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
+
+
 
 # GAPS
 gaps inner 2
