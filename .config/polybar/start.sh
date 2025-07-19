@@ -7,10 +7,10 @@ killall -q polybar
 while pgrep -x polybar >/dev/null; do sleep 1; done
 
 # Launch (single screen)
-#polybar main &
+polybar main &
 
 # Launch (double screen)
-polybar first &
-polybar second &
+#polybar first &
+#polybar second &
 
 echo "Polybar launched..."

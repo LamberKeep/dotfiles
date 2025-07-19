@@ -1,0 +1,6 @@
+.Xresources
+.Xresources.d/*
+.config/i3/*
+.config/mc/*
+.config/polybar/*
+.config/neofetch/*

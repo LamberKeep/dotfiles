@@ -7,41 +7,47 @@ set $ctrl control
 font pango: DejaVu Sans Mono 12px
 
 # COLORS
-set_from_resource	$backgr		background
-set_from_resource	$foregr		foreground
-set_from_resource	$color0		color0
-set_from_resource	$color1		color1
-set_from_resource	$color2		color2
-set_from_resource	$color3		color3
-set_from_resource	$color4		color4
-set_from_resource	$color5		color5
-set_from_resource	$color6		color6
-set_from_resource	$color7		color7
-set_from_resource	$color8		color8
-set_from_resource	$color9		color9
-set_from_resource	$color10	color10
-set_from_resource	$color11	color11
-set_from_resource	$color12	color12
-set_from_resource	$color13	color13
-set_from_resource	$color14	color14
-set_from_resource	$color15	color15
+set $rosewater #f4dbd6
+set $flamingo #f0c6c6
+set $pink #f5bde6
+set $mauve #c6a0f6
+set $red #ed8796
+set $maroon #ee99a0
+set $peach #f5a97f
+set $yellow #eed49f
+set $green #a6da95
+set $teal #8bd5ca
+set $sky #91d7e3
+set $sapphire #7dc4e4
+set $blue #8aadf4
+set $lavender #b7bdf8
+set $text #cad3f5
+set $subtext1 #b8c0e0
+set $subtext0 #a5adcb
+set $overlay2 #939ab7
+set $overlay1 #8087a2
+set $overlay0 #6e738d
+set $surface2 #5b6078
+set $surface1 #494d64
+set $surface0 #363a4f
+set $base #24273a
+set $mantle #1e2030
+set $crust #181926
 
 # THEME
-# class			border	backgr	text	indic	child
-client.focused		$foregr	$color2	$foregr	$foregr	$foregr
-client.focused_inactive	$backgr	$color2	$foregr	$color2	$color2
-client.unfocused	$backgr	$backgr	$foregr	$backgr	$backgr
-client.urgent		$color8	$backgr	$foregr	$color8	$color8
-client.placeholder	$backgr	$backgr	$foregr	$backgr	$backgr
-client.background	$backgr
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
 
 # SHUTDOWN
-bindsym --release $mod+Shift+e exec sh '/home/lamberkeep/.config/i3/shutdown.sh'
+bindsym --release $mod+Shift+e exec sh '~/.config/i3/shutdown.sh'
 
 # SCREENSHOT
-bindsym --release Print exec import -window root -set filename:f '%wx%h' "/tmp/$(date +%Y_%m_%d)_%[filename:f].png"
-bindsym --release $ctrl+Print exec import -window $(xdotool selectwindow) -set filename:f '%wx%h' "/tmp/$(date +%Y_%m_%d)_%[filename:f].png"
-bindsym --release $alt+Sys_Req exec import -set filename:f '%wx%h' "/tmp/$(date +%Y_%m_%d)_%[filename:f].png"
+bindsym --release Print exec --no-startup-id import /tmp/latest-screenshot.png
 
 # FN BUTTONS
 bindsym XF86Tools exec --no-startup-id i3-sensible-terminal -e cmus
@@ -55,7 +61,7 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 bindsym XF86Mail exec --no-startup-id thunderbird
-bindsym XF86HomePage exec --no-startup-id librewolf
+bindsym XF86HomePage exec --no-startup-id seamonkey
 bindsym XF86Explorer exec --no-startup-id thunar
 bindsym XF86Calculator exec --no-startup-id i3-sensible-terminal -e bc 
 
@@ -66,8 +72,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # PROGRAM LAUNCHER
-#bindsym $mod+Tab exec --no-startup-id "rofi -show drun -normal-window"
-bindsym $mod+Tab exec --no-startup-id "dmenu_run -b -fn 'Ubuntu-12' -nb '#1d1f21' -sb '#81a2be'"
+bindsym $mod+Tab exec --no-startup-id dmenu_run_history
 
 # FOCUS
 bindsym $mod+j focus left
@@ -191,20 +196,21 @@ for_window [all] title_format "%class - %title"
 for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 3px
 for_window [floating] move position center
-for_window [title="rofi"] floating enable; sticky enabled
+#for_window [title="rofi"] floating enable; sticky enabled
 for_window [title="Picture-in-Picture"] border pixel 1; sticky enabled
 for_window [title="Default - Wine desktop"] fullscreen enable
 #for_window [class="mpv"] floating enable; sticky enabled
 #for_window [title="cmus"] floating enable; sticky enabled; resize set 900 600 
 
 # WALLPAPER
-exec --no-startup-id hsetroot -solid "#101010"
+exec --no-startup-id hsetroot -solid "#181926"
 #exec --no-startup-id feh --bg-fill ~/.wallpaper/holo/1.jpg --bg-fill ~/.wallpaper/holo/2.jpg
 
 # AUTOSTART
 exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id sh ~/.config/polybar/start.sh --hack
-exec --no-startup-id birdtray
+#exec --no-startup-id birdtray
+#exec --no-startup-id rclone mount lamberkeep@gmail.com: "Google Drive" --daemon
 #exec --no-startup-id discord --start-minimized
 #exec --no-startup-id element-desktop --hidden
 #exec --no-startup-id telegram-desktop -startintray

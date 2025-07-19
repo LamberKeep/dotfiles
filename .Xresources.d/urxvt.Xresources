@@ -1,0 +1,11 @@
+! URxvt
+URxvt.geometry: 		400x400
+URxvt.internalBorder:		6
+URxvt.font:     		xft:bitstream vera sans mono:size=10:antialias=true
+URxvt.boldFont: 		xft:bitstream vera sans mono:bold:size=10:antialias=true
+URxvt.scrollBar: 		false
+!URxvt.scrollBar: 		true
+!URxvt.scrollBar_right: 	true
+URxvt.keysym.Shift-Control-V:	eval:paste_clipboard
+URxvt.keysym.Shift-Control-C:	eval:selection_to_clipboard
+URxvt.color1:			base02
