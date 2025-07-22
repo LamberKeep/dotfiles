@@ -4,4 +4,3 @@
 .config/mc/*
 .config/polybar/*
 .config/neofetch/*
-.config/hexchat/colors.conf
