@@ -43,9 +43,6 @@ client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
-# SHUTDOWN
-bindsym --release $mod+Shift+e exec sh '~/.config/i3/shutdown.sh'
-
 # SCREENSHOT
 bindsym --release Print exec --no-startup-id import /tmp/latest-screenshot.png
 
@@ -163,7 +160,7 @@ bindsym $mod+Shift+grave move workspace to output next
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-# RESIZE
+# MODES
 bindsym $mod+r mode "*"
 
 mode "*" {
@@ -184,7 +181,24 @@ mode "*" {
         bindsym $mod+r mode "default"
 }
 
+set $Locker i3lock && sleep 1
 
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+
+bindsym $mod+Pause mode "$mode_system"
+
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 # GAPS
 gaps inner 2
